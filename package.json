@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@vis.gl/react-google-maps": "^1.4.0",
+    "react-router-dom": "^6.28.0"
+  }
+}
