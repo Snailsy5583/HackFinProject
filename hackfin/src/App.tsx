@@ -1,10 +1,16 @@
-import { useState } from "react";
-import reactLogo from "/src/output-onlinepngtools.png";
 
+import { useNavigate } from "react-router-dom";
+import reactLogo from "/src/output-onlinepngtools.png";
 import "./App.css";
 
 function App() {
-    const [, setCount] = useState(0);
+    
+    const navigate = useNavigate(); 
+
+    const handleButtonClick = () => {
+        
+        navigate("/Riskassesment.tsx"); 
+    };
 
     return (
         <>
@@ -13,7 +19,7 @@ function App() {
             </div>
             <h1>Swing into Better Investments</h1>
             <div className="card">
-                <button onClick={() => setCount(() => 0)}>
+                <button onClick={handleButtonClick}>
                     Start Your Search Today
                 </button>
                 <p></p>

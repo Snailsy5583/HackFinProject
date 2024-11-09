@@ -7,6 +7,8 @@ import {
 
 import App from "./App.tsx";
 import MapPage from "./MapPage.tsx";
+import RiskA from "./Riskassesment.tsx";
+
 
 function Webpage() {
     return (
@@ -15,9 +17,14 @@ function Webpage() {
                 <Route path="/" element={<Navigate to="/Home" />} />
                 <Route path="/Home" element={<App />} />
                 <Route path="/Map" element={<MapPage />} />
+                <Route path="/RiskAssesment" element={<RiskA />} />
             </Routes>
         </Router>
     );
 }
+
+
+
+
 
 export default Webpage;
