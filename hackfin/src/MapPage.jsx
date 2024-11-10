@@ -42,7 +42,7 @@ function MapPage() {
         let newLocation = { lat: newLat, lng: newLng }
         marker.current.position = newLocation;
         setCenter(newLocation);
-        console.log(evaluate_risk({latitude: newLat, longitude: newLng}, [10, 50, 20]));
+        console.log(evaluate_risk({latitude: newLat, longitude: newLng}, [10, 100, 20, 80]));
     };
     const LoadMarker = async (map) =>
     {
