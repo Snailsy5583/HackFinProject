@@ -1,106 +1,145 @@
 #root,
 body {
-    height: 100vh;
+   height: 100vh;
 }
+
 
 #root2 {
-    height: 100%;
+   height: 100%;
 }
 
+
 header {
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5vh;
-    padding: 10px 20px;
-    background-image: linear-gradient(to right, #c32727, #e87925, #d27fb2);
-    color: #fff;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+   display: flex;
+   align-items: left;
+   justify-content: left;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 5vh;
+   padding: 10px 20px;
+   background-image: linear-gradient(to right, #c32727, #e87925, #d27fb2);
+   color: #fff;
+   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+   z-index: 1000;
 }
+
 
 header a,
 header a:hover {
-    color: #fff;
-    display: flex;
-    align-items: center;
+   color: #fff;
+   display: flex;
+   align-items: center;
 }
+
 
 #logo {
-    height: 4vh;
-    width: auto;
-    margin-right: 10px;
+   height: 4vh;
+   width: auto;
+   margin-right: 10px;
 }
+
 
 #companyName {
-    font-size: 24px;
-    font-weight: bold;
+   font-size: 24px;
+   font-weight: bold;
 }
 
+
 #pageContainer {
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    width: 100%;
-    height: 95vh;
-    background-image: linear-gradient(to right, #c32727, #e87925, #d27fb2);
-    color: black;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
-    z-index: 0;
+   display: flex;
+   align-items: left;
+   justify-content: left;
+   width: 100%;
+   height: 95vh;
+   background-image: linear-gradient(to right, #c32727, #e87925, #d27fb2);
+   color: black;
+   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+   z-index: 0;
 }
+
 
 #leftContainer,
 #rightContainer {
+   display: flex;
+   align-items: left;
+   justify-content: left;
+   flex-wrap: wrap;
+   height: 100%;
+   width: 45%;
+   padding: 0px;
+   margin: 5vh auto;
+   background-color: #f2f2f2;
+   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+#leftContainer {
+   width: 55%;
+   z-index: 5;
+}
+
+
+#searchBarContainer {
     display: flex;
     align-items: left;
     justify-content: left;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 45%;
-    padding: 0px;
-    margin: 5vh auto;
-    background-color: #f2f2f2;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    flex-wrap: no;
+   
+margin-top: 25px;
+   flex-shrink: 0;
+   flex-basis: 100%;
+   flex-grow: 1;
 }
 
-#leftContainer {
-    width: 55%;
-    z-index: 5;
+
+.searchBar {
+   padding: 10px 15px;
+   border: 1px solid #ddd;
+   border-radius: 15px;
+    width: 39%;
+    margin: 10px 5% 10px 5.5%;
+    margin-bottom: 25px;
+   background-color: #fff;
+   color: #000;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+   transition: box-shadow 0.3s ease-in-out;
+   font-size: 16px;
 }
 
-#searchBarContainer {
-    margin-top: 25px;
-    flex-shrink: 0;
-    flex-basis: 100%;
-    flex-grow: 1;
-}
-
-#searchBar {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    width: 41%;
-    margin: 10px 100% 10px 2.5%;
-    background-color: #fff;
-    color: #000;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    transition: box-shadow 0.3s ease-in-out;
-    font-size: 16px;
-}
 
 #customization,
 #analysis {
-    height: 85%;
-    width: 45%;
-    margin: auto;
-    margin-top: 0;
-    padding: 0px;
-    background-color: #f5f5f5;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-    z-index: 4;
+   height: 85%;
+   width: 45%;
+   margin: auto;
+   margin-top: 0;
+   padding: 0px;
+   background-color: #f5f5f5;
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+   border-radius: 25px;
+   z-index: 4;
 }
+
+
+/* Styles for labels */
+#customization label {
+    font-size: 1.2em;  /* Increase font size */
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;  /* Ensures each label is on a new line */
+  }
+  
+  /* Styles for input boxes */
+  #customization input[type="number"] {
+    width: 100%;            /* Full width */
+    max-width: 300px;       /* Limit maximum width if needed */
+    height: 2.5em;          /* Increase height */
+    font-size: 1em;         /* Increase font size for readability */
+    padding: 0.5em;         /* Add padding for spacing within the input */
+    margin-bottom: 15px;    /* Space below each input */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px;     /* Rounded corners */
+    box-sizing: border-box; /* Prevents padding from affecting total width */
+  }
