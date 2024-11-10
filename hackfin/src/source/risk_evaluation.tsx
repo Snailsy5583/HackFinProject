@@ -1,7 +1,7 @@
 //@ts-ignore
 //import http from 'axiom'
 //@ts-ignore
-import {GOV_API, GOOGLE_API} from "../api"
+import {GOV_API, GOOGLE_API} from "../../api"
 
 interface Location {
     latitude: number;
@@ -52,7 +52,7 @@ export async function evaluate_risk(location: Location, coefficients: RiskData):
     let total = 0;
     for (let i=1; i<result.length; i++) total += result[i];
 
-    result[0] *= total/result.length;
+    result[0] *= total/(result.length-1);
     return result;
 }
 
