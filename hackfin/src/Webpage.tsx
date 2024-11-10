@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 
 import App from "./App.tsx";
-import MapPage from "./MapPage.tsx";
+//@ts-ignore
+import MapPage from "./MapPage.jsx";
 
 function Webpage() {
     return (
