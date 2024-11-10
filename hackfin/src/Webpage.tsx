@@ -6,9 +6,8 @@ import {
 } from "react-router-dom";
 
 import App from "./App.tsx";
-import MapPage from "./MapPage.tsx";
+import MapPage from "./MapPage.jsx";
 import RiskA from "./RiskEvaluationPage.tsx";
-
 
 function Webpage() {
     return (
@@ -22,9 +21,5 @@ function Webpage() {
         </Router>
     );
 }
-
-
-
-
 
 export default Webpage;
