@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import App from "./App.tsx";
+// @ts-ignore
 import MapPage from "./MapPage.jsx";
 import RiskA from "./RiskEvaluationPage.tsx";
 
