@@ -2,8 +2,10 @@ import { useState } from "react";
 import reactLogo from "/src/output-onlinepngtools.png";
 
 import "./App.css";
+import { evaluate_crime } from "./risk_evaluation";
 
 function App() {
+    const crimes = evaluate_crime({latitude:33.9, longitude:-80.3});
     const [, setCount] = useState(0);
 
     return (
