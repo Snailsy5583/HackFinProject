@@ -8,6 +8,7 @@ import {
 import App from "./App.tsx";
 //@ts-ignore
 import MapPage from "./MapPage.jsx";
+import RiskA from "./Riskassesment.tsx";
 
 function Webpage() {
     return (
@@ -16,6 +17,7 @@ function Webpage() {
                 <Route path="/" element={<Navigate to="/Home" />} />
                 <Route path="/Home" element={<App />} />
                 <Route path="/Map" element={<MapPage />} />
+                <Route path="/RiskAssessment" element={<RiskA />} />
             </Routes>
         </Router>
     );
