@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import reactLogo from "/src/output-onlinepngtools.png";
+import reactLogo from "/src/output-onlinepngtools (1).png";
 import "./App.css";
 
 function App() {

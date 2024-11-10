@@ -30,8 +30,8 @@ const Riskassesment: React.FC = () => {
 
       
       <div style={additionalContentStyle}>
-        <h2>Additional Information</h2>
-        <p>This section can contain additional content or information about your services.</p>
+        <h2></h2>
+        <p></p>
       </div>
 
       
@@ -42,11 +42,15 @@ const Riskassesment: React.FC = () => {
 
     <div style={addContentStyle}>
 
-        <h2>To be or not be</h2>
-    <p> mango mango </p>
+        <h2></h2>
+    <p> </p>
     </div>
 
+    <div style={rightContainerStyle}>
+    <p></p>
 
+    </div>
+        
 
 
     </div>
@@ -62,10 +66,11 @@ const headerStyle: React.CSSProperties = {
   top: 0,
   left: 0,
   width: '100%',
+  height: '50px',
   padding: '10px 20px',
-  backgroundColor: '#999',
+  backgroundImage: 'linear-gradient(to right, #c32727, #e87925, #d27fb2)',
   color: '#fff',
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
   zIndex: 1000,
 };
 
@@ -88,7 +93,7 @@ const companyNameStyle: React.CSSProperties = {
 const searchBarContainerStyle: React.CSSProperties = {
   position: 'absolute',
   top: '80px',
-  left: '25px',
+  left: '15px',
   zIndex: 10,
 };
 
@@ -114,7 +119,7 @@ const additionalContentStyle: React.CSSProperties = {
     width: '650px',
     padding: '0px',
     backgroundColor: '#f5f5f5',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '25px',
     zIndex: 4,
   
@@ -128,7 +133,7 @@ const addContentStyle: React.CSSProperties = {
     width: '650px',
     padding: '0px',
     backgroundColor: '#f5f5f5',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '25px',
     zIndex: 4,
 };
@@ -143,9 +148,23 @@ const leftContainerStyle: React.CSSProperties = {
   width: '1400px',
   padding: '0px',
   backgroundColor: '#f2f2f2',
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.5)',
   borderRadius: '5px',
   zIndex: 1,
 };
+
+
+const rightContainerStyle: React.CSSProperties = {
+    top: '50px',
+    position: 'absolute',
+    right: '0px',
+    height: '1265px',
+    width: '1200px',
+    padding: '0px',
+    backgroundColor: '#f2f2f2',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.5)',
+    borderRadius: '5px',
+    zIndex: 0,
+  };
 
 export default Riskassesment;
