@@ -1,12 +1,10 @@
 
 import { useNavigate } from "react-router-dom";
-import reactLogo from "/src/output-onlinepngtools (1).png";
+import reactLogo from "/src/assets/output-onlinepngtools (1).png";
 import "./App.css";
-import { evaluate_crime } from "./source/risk_evaluation";
 import { useState } from "react";
 
 function App() {
-    const crimes = evaluate_crime({latitude:33.9, longitude:-80.3});
     const [, setCount] = useState(0);
     
     const navigate = useNavigate(); 

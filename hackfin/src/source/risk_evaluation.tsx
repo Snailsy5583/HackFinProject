@@ -2,6 +2,8 @@
 //import http from 'axiom'
 //@ts-ignore
 import {GOV_API, GOOGLE_API} from "../../api"
+//@ts-ignore
+import auth from "../OAuth.js"
 
 interface Location {
     latitude: number;
@@ -33,7 +35,8 @@ type CrimeData = {
     "populations": {"populations":{}, "participated_population": Record<string, any>}
 }
 
-let years_past = 5;
+let crime_years_past = 5;
+let air_years_future = 5;
 
 function spherical_distance_squared(loc1: Location, loc2: Location): number {
     const deg2rad = Math.PI/180;
@@ -56,7 +59,7 @@ export async function evaluate_risk(location: Location, coefficients: RiskData):
     return result;
 }
 
-export async function evaluate_crime(location: Location, agencies_to_check=5): Promise<number> {
+async function evaluate_crime(location: Location, agencies_to_check=5): Promise<number> {
     // find state and county
     let address_json = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${GOOGLE_API}`)
                                 .then(x=>x.json());
@@ -96,7 +99,7 @@ export async function evaluate_crime(location: Location, agencies_to_check=5): P
     let today = new Date();
     let to_year = today.getFullYear();
     let month = today.getMonth()+1;
-    let from_year = to_year - years_past;
+    let from_year = to_year - crime_years_past;
 
     let from = `${month}-${from_year}`;
     let to   = `${month}-${to_year}`;
@@ -118,6 +121,19 @@ export async function evaluate_crime(location: Location, agencies_to_check=5): P
     return total_crimes;
 }
 
-export async function evaluate_air(location: Location): Promise<number> {
+async function evaluate_air(location: Location): Promise<number> {
+    let dateTime = 
+    const response: Record<string, any> = await fetch(`https://airquality.googleapis.com/v1/forecast:lookup`, {
+        method: "POST",
+        body: JSON.stringify({
+            "location": {
+                "latitude": location.latitude,
+                "longitude": location.longitude
+            },
+            "dateTime": "asdfghjklkjhgfdsasdfghjkjhgfds",
+            // End of list of possible types for union field time_range.
+            "universalAqi": true,
+        })
+    })
     return 0;
 }

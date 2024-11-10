@@ -12,7 +12,7 @@ const RiskAssesment: React.FC = () => {
     <div id="root2">
       <header>
         <a href="/home">
-          <img src="src/Risk Monkey-4_processed.png" alt="Company Logo" id="logo" /> 
+          <img src="src/assets/Risk Monkey-4_processed.png" alt="Company Logo" id="logo" /> 
           <h1 id="companyName">Risk Monkey</h1>
         </a>
       </header> 

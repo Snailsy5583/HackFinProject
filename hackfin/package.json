@@ -10,13 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googleapis/docs": "^3.3.0",
     "@googlemaps/js-api-loader": "^1.16.8",
     "@react-google-maps/api": "^2.20.3",
+    "@react-oauth/google": "^0.12.1",
     "@types/google.maps": "^3.58.1",
     "@types/react-router": "^5.1.20",
     "@vis.gl/react-google-maps": "^1.4.0",
     "axiom": "^0.1.6",
     "bootstrap": "^5.3.3",
+    "googleapis": "^144.0.0",
     "react": "^18.3.1",
     "react-coordinate-input": "^1.0.0",
     "react-dom": "^18.3.1",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
