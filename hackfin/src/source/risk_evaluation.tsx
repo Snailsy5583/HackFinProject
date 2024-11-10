@@ -12,7 +12,8 @@ interface Location {
 type RiskData = [
     total: number,
     crime: number,
-    air: number
+    air: number,
+    flooding: number
 ]
 
 type CrimeAgencyData = {
@@ -35,7 +36,6 @@ type CrimeData = {
 }
 
 let crime_years_past = 5;
-let air_years_future = 5;
 
 function spherical_distance_squared(loc1: Location, loc2: Location): number {
     const deg2rad = Math.PI/180;
@@ -48,30 +48,42 @@ function spherical_distance_squared(loc1: Location, loc2: Location): number {
 export async function evaluate_risk(location: Location, coefficients: RiskData): Promise<RiskData> {
     let result: RiskData = coefficients;
 
-    result[1] = await evaluate_crime(location) * coefficients[1];
-    result[2] = await evaluate_air(location)   * coefficients[2];
+    let address_json = await geocoding(location);
+
+    result[1] = await evaluate_crime(location, address_json) * coefficients[1];
+    result[2] = await evaluate_air(location)                 * coefficients[2];
+    result[3] = await evaluate_flooding(location, 10)        * coefficients[3];
 
     let total = 0;
     let coeff_total = 0;
     for (let i=1; i<coefficients.length; i++) { 
-        total += result[i]; 
+        total += result[i];
         coeff_total += coefficients[i];
     }
 
     result[0] = total/coeff_total * coefficients[0];
+
+    console.log(result);
     return result;
 }
 
-async function evaluate_crime(location: Location, agencies_to_check=5): Promise<number> {
-    // find state and county
+async function geocoding(location: Location): Promise<any> {
     let address_json = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${GOOGLE_API}`)
                                 .then(x=>x.json());
     if (!address_json)
+        return null;
+    return address_json;
+}
+
+async function evaluate_crime(location: Location, address_json: any, agencies_to_check=5): Promise<number> {
+    if (!address_json)
         return -1;
+    // find state and county
     let state_json = address_json["results"][0]["address_components"].find((element:any) => element["types"][0] === "administrative_area_level_1");
     if (!state_json)
         return -1;
     let state: string = state_json["short_name"];
+    // @ts-ignore
     let county: string = address_json["results"][0]["address_components"].find((element:any) => element["types"][0] === "administrative_area_level_2")["short_name"];
     county = county.split(" ")[0].toUpperCase();
 
@@ -127,8 +139,6 @@ async function evaluate_crime(location: Location, agencies_to_check=5): Promise<
 }
 
 async function evaluate_air(location: Location): Promise<number> {
-    let dateTime = new Date(Date.now());
-
     const response: Record<string, any> = await fetch(`https://airquality.googleapis.com/v1/currentConditions:lookup?key=${GOOGLE_API}`, {
         method: "POST",
         body: JSON.stringify({
@@ -143,4 +153,22 @@ async function evaluate_air(location: Location): Promise<number> {
 
     let risk: number = response["indexes"][0]["aqi"]/20;
     return risk;
+}
+
+async function evaluate_flooding(location: Location, proximity: number): Promise<number> {
+    // @ts-ignore
+    let nfip: any = await fetch(`https://www.fema.gov/api/open/v1/NfipMultipleLossProperties?$top=5000`).then(x=>x.json());
+    let nfip_arr  = nfip["NfipMultipleLossProperties"];
+
+    console.log(nfip_arr);
+    nfip_arr = nfip_arr.filter((x):boolean => {
+        let sample: Location = {latitude: x["latitude"], longitude: x["longitude"]};
+        let score = spherical_distance_squared(sample, location) < (proximity*proximity);
+        console.log(score);
+        return score;
+    });
+
+    console.log(nfip_arr.length);
+
+    return nfip_arr.length/10;
 }
