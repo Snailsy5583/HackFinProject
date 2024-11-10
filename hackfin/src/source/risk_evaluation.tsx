@@ -3,7 +3,6 @@
 //@ts-ignore
 import {GOV_API, GOOGLE_API} from "../../api"
 //@ts-ignore
-import auth from "../OAuth.js"
 
 interface Location {
     latitude: number;
@@ -49,13 +48,17 @@ function spherical_distance_squared(loc1: Location, loc2: Location): number {
 export async function evaluate_risk(location: Location, coefficients: RiskData): Promise<RiskData> {
     let result: RiskData = coefficients;
 
-    result[1] *= await evaluate_crime(location);
-    result[2] *= await evaluate_air(location);
+    result[1] = await evaluate_crime(location) * coefficients[1];
+    result[2] = await evaluate_air(location)   * coefficients[2];
 
     let total = 0;
-    for (let i=1; i<result.length; i++) total += result[i];
+    let coeff_total = 0;
+    for (let i=1; i<coefficients.length; i++) { 
+        total += result[i]; 
+        coeff_total += coefficients[i];
+    }
 
-    result[0] *= total/(result.length-1);
+    result[0] = total/coeff_total * coefficients[0];
     return result;
 }
 
@@ -117,23 +120,27 @@ async function evaluate_crime(location: Location, agencies_to_check=5): Promise<
                 total_crimes += arrests_list[i]/part_population_list[i];
     }
 
+    total_crimes *= 10;
+
     console.log(total_crimes);
     return total_crimes;
 }
 
 async function evaluate_air(location: Location): Promise<number> {
-    let dateTime = 
-    const response: Record<string, any> = await fetch(`https://airquality.googleapis.com/v1/forecast:lookup`, {
+    let dateTime = new Date(Date.now());
+
+    const response: Record<string, any> = await fetch(`https://airquality.googleapis.com/v1/currentConditions:lookup?key=${GOOGLE_API}`, {
         method: "POST",
         body: JSON.stringify({
             "location": {
                 "latitude": location.latitude,
                 "longitude": location.longitude
             },
-            "dateTime": "asdfghjklkjhgfdsasdfghjkjhgfds",
-            // End of list of possible types for union field time_range.
             "universalAqi": true,
         })
-    })
-    return 0;
+    }).then(x=>x.json());
+    console.log(response);
+
+    let risk: number = response["indexes"][0]["aqi"]/20;
+    return risk;
 }

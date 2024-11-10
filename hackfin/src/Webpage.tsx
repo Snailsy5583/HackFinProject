@@ -10,7 +10,6 @@ import App from "./App.tsx";
 import MapPage from "./MapPage.jsx";
 import RiskA from "./RiskEvaluationPage.tsx";
 //@ts-ignore
-import { OAuthCallback } from "./OAuth.js"
 
 function Webpage() {
     return (
@@ -20,7 +19,6 @@ function Webpage() {
                 <Route path="/home" element={<App />} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/risk_assessment" element={<RiskA />} />
-                <Route path="/oauth" element={<OAuthCallback />} />
             </Routes>
         </Router>
     );

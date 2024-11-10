@@ -3,6 +3,7 @@ import { GOOGLE_API } from "../api.js";
 import React, { useState, useRef, useEffect } from "react";
 import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
 import { isNullishCoalesce } from "typescript";
+import { evaluate_risk } from "./source/risk_evaluation.tsx"
 
 const containerStyle = {
     width: "100%",
@@ -10,8 +11,8 @@ const containerStyle = {
 };
 
 const initialCenter = {
-    lat: -33.860664,
-    lng: 151.208138,
+    lat: 41.860664,
+    lng: -99.208138,
 };
 
 function MapPage() {
@@ -27,7 +28,7 @@ function MapPage() {
     // Function to handle input and pan to new coordinates
     const handleCoordinateChange = (e) => {
 
-        e.preventDefault();        
+        e.preventDefault();
 
         const newLat = parseFloat(
             e.currentTarget.elements.namedItem("lat")
@@ -41,6 +42,7 @@ function MapPage() {
         let newLocation = { lat: newLat, lng: newLng }
         marker.current.position = newLocation;
         setCenter(newLocation);
+        console.log(evaluate_risk({latitude: newLat, longitude: newLng}, [10, 50, 20]));
     };
     const LoadMarker = async (map) =>
     {
@@ -65,7 +67,6 @@ function MapPage() {
         
         marker.current.map=map;
         
-        
         console.log(marker.current.position.lat + " " + marker.current.map);    
 
     }
@@ -85,7 +86,7 @@ function MapPage() {
                     zoom={4}
                     
                     onLoad={LoadMarker}                        
-                    //onCenterChanged={()=>{console.log("penis"); LoadMarker(this)}}               
+                    // onCenterChanged={()=>{console.log("penis"); LoadMarker(this)}}               
                     options={{ mapId: "6e120bcd575d29f7", 
                         restriction: {
                             latLngBounds: {
