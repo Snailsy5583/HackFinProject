@@ -70,7 +70,7 @@ const headerStyle: React.CSSProperties = {
   padding: '10px 20px',
   backgroundImage: 'linear-gradient(to right, #c32727, #e87925, #d27fb2)',
   color: '#fff',
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+  boxShadow: '0px 8px 25px rgba(0, 0, 0, 0.4)',
   zIndex: 1000,
 };
 
@@ -92,8 +92,8 @@ const companyNameStyle: React.CSSProperties = {
 
 const searchBarContainerStyle: React.CSSProperties = {
   position: 'absolute',
-  top: '80px',
-  left: '15px',
+  top: '90px',
+  left: '20px',
   zIndex: 10,
 };
 
@@ -119,7 +119,7 @@ const additionalContentStyle: React.CSSProperties = {
     width: '650px',
     padding: '0px',
     backgroundColor: '#f5f5f5',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
     borderRadius: '25px',
     zIndex: 4,
   
@@ -133,7 +133,7 @@ const addContentStyle: React.CSSProperties = {
     width: '650px',
     padding: '0px',
     backgroundColor: '#f5f5f5',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
     borderRadius: '25px',
     zIndex: 4,
 };
@@ -148,7 +148,7 @@ const leftContainerStyle: React.CSSProperties = {
   width: '1400px',
   padding: '0px',
   backgroundColor: '#f2f2f2',
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.5)',
+  boxShadow: '5px 4px 20px rgba(0, 0, 0, 0.5)',
   borderRadius: '5px',
   zIndex: 1,
 };
