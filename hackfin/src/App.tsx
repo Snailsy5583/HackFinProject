@@ -9,7 +9,7 @@ function App() {
 
     const handleButtonClick = () => {
         
-        navigate("/Riskassesment.tsx"); 
+        navigate("/RiskAssessment"); 
     };
 
     return (
