@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@400;700;900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,21 +33,31 @@ body {
 }
 
 h1 {
-  font-size: 1.2em;
-  line-height: 1.1;
+  font-family: 'Doto', sans-serif;
+  font-size: 3.0em;
+  line-height: 0.3;
 }
+
+h2 {
+  font-size: 3.6em;
+  line-height: 0.5;
+}
+
+
+
 
 button {
   border-radius: 8px;
   border: 1px solid;
   border-color: #1a1a1a;
-  padding: 0.6em 1.2em;
+  padding: 0.9em 3.7em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  box-shadow: 0px 1px 8px rgba(255, 255, 255, .9);
 }
 button:hover {
   border-color: #646cff;
