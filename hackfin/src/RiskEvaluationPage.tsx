@@ -1,16 +1,34 @@
 import React, { useState } from "react";
 import "./RiskEvaluationPage.css";
 
+//@ts-ignore
+import Map from "./MapPage.jsx";
+import { evaluate_risk } from "./source/risk_evaluation.js";
+
 const RiskAssesment: React.FC = () => {
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState<google.maps.LatLngLiteral>({
+        lat: 40,
+        lng: -100,
+    });
     const [crimeRisk, setCrimeRisk] = useState<number | "">("");
     const [airPollutionRisk, setAirPollutionRisk] = useState<number | "">("");
     const [etcRisk, setEtcRisk] = useState<number | "">("");
     const [environmentRisk, setEnvironmentRisk] = useState<number | "">("");
     const [fireRisk, setFireRisk] = useState<number | "">("");
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(event.target.value);
+    const handleSearchChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        isLat: boolean
+    ) => {
+        if (event.target.value === "") return;
+
+        let newLocation = searchQuery;
+        if (isLat) {
+            newLocation.lat = Number(event.target.value);
+        } else {
+            newLocation.lng = Number(event.target.value);
+        }
+        setSearchQuery(newLocation);
     };
 
     const handleInputChange = (
@@ -39,18 +57,24 @@ const RiskAssesment: React.FC = () => {
                 <div id="leftContainer">
                     <div id="searchBarContainer">
                         <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            placeholder="Enter latitude and longitude"
+                            type="number"
+                            min="24"
+                            max="49.5"
+                            onChange={(e) => {
+                                handleSearchChange(e, true);
+                            }}
+                            placeholder="Enter latitude"
                             className="searchBar"
                         />
 
                         <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            placeholder="Enter and longitude"
+                            type="number"
+                            max="-65"
+                            min="-127"
+                            onChange={(e) => {
+                                handleSearchChange(e, false);
+                            }}
+                            placeholder="Enter longitude"
                             className="searchBar"
                         />
                     </div>
@@ -126,12 +150,25 @@ const RiskAssesment: React.FC = () => {
 
                     <div id="analysis">
                         <h2>Analysis Content</h2>
-                        <p></p>
+                        {evaluate_risk(
+                            {
+                                latitude: searchQuery.lat,
+                                longitude: searchQuery.lng,
+                            },
+                            [
+                                10,
+                                Number(crimeRisk),
+                                Number(airPollutionRisk),
+                                Number(environmentRisk),
+                            ]
+                        ).then((x) => (
+                            <p>x</p>
+                        ))}
                     </div>
                 </div>
 
                 <div id="rightContainer">
-                    <p>Right Container Content</p>
+                    <Map initialLocation={searchQuery}></Map>
                 </div>
             </div>
         </div>
